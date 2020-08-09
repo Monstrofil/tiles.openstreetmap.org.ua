@@ -13,4 +13,3 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    rvm: 2.0.0
