@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+
+  builder:
+    build:
+      context: pbf
+    image: "osm_ukraine_builder"
+    volumes:
+      - ./output:/output

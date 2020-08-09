@@ -1,0 +1,3 @@
+# place your .pbf files here
+# all them will be imported into postgresql
+# during renderd startup

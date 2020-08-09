@@ -1,0 +1,46 @@
+version: "3.4"
+x-postgres-env-config: &x-postgres-env-config
+  POSTGRES_USER: "${POSTGRES_USER}"
+  POSTGRES_DB: "${POSTGRES_DB}"
+  POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+  POSTGRES_HOST: "${POSTGRES_HOST}"
+
+services:
+
+  website:
+
+
+  renderd:
+    image: monstrofil/osm_renderd_carto_${CARTO_STYLE_TAG}
+    restart: on-failure
+    environment:
+      <<: *x-postgres-env-config
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      OSM2PGSQL_THREADS: 8
+    entrypoint: /run.sh
+    volumes:
+      - renderd:/var/run/renderd
+      - ./data:/var/import:ro
+      - ./wait_for.sh:/bin/wait_for:ro
+
+  apache:
+    image: monstrofil/osm_apache_mod_tile
+    restart: on-failure
+    ports:
+      - ${APACHE_EXPOSED_PORT:-8082}:80
+    depends_on:
+      - renderd
+    volumes:
+      - renderd:/var/run/renderd
+
+  postgis:
+    image: monstrofil/osm_postgis_hstore
+    restart: unless-stopped
+    environment:
+      <<: *x-postgres-env-config
+    volumes:
+      - pg_renderd_data:/var/lib/postgresql/data/
+
+volumes:
+  pg_renderd_data:
+  renderd:

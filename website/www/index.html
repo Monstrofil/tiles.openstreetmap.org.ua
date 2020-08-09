@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ukrainian OSM volunteer's server</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://openstreetmap.org.ua/favicon.png"/>
+
+
+    <link rel="stylesheet" href="//unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+    <script src="//unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.min.js"></script>
+    <script src="https://teastman.github.io/Leaflet.pattern/leaflet.pattern.js"></script>
+    <script src="index.js"></script>
+    <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="map"></div>
+
+<script>
+    var map = L.map('map').setView([48.959, 32.311], 6);
+
+    L.tileLayer('//tiles.openstreetmap.org.ua/tile/{z}/{x}/{y}.png', {
+        minZoom: 6,
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright/">OpenStreetMap</a> contributors, <a href="http://opendatacommons.org/licenses/odbl/">ODbL</a>',
+        id: 'base'
+    }).addTo(map);
+    var hash = new L.Hash(map);
+
+    //Crimea stripes
+
+    var bigStripes = new L.StripePattern({
+        patternContentUnits: 'objectBoundingBox',
+        patternUnits: 'objectBoundingBox',
+        weight: 0.1,
+        spaceWeight: 0.1,
+        height: 0.2,
+        angle: 45,
+        color: '#E64073'
+    });
+    bigStripes.addTo(map);
+
+    L.geoJson(crimea, {
+        style: {
+            fillPattern: bigStripes,
+            stroke: false,
+            fillOpacity: 0.1
+        }
+    }).addTo(map);
+
+    L.geoJson(ordilo, {
+        style: {
+            fillPattern: bigStripes,
+            stroke: false,
+            fillOpacity: 0.1
+        }
+    }).addTo(map);
+</script>
+</body>
+</html>
