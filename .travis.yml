@@ -5,7 +5,7 @@ jobs:
     - stage: build docker image
       script:
       - docker-compose -f docker-compose-pbf.yml build
-      - travis_wait 60 docker-compose -f docker-compose-pbf.yml run builder
+      - travis_wait 90 docker-compose -f docker-compose-pbf.yml run builder
 deploy:
   provider: releases
   api_key: "${GITHUB_OAUTH_TOKEN}"
