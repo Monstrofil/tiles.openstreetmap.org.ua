@@ -1,0 +1,16 @@
+dist: trusty
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker-compose -f docker-compose-pbf.yml build
+      - docker-compose -f docker-compose-pbf.yml run builder
+deploy:
+  provider: releases
+  api_key: "${GITHUB_OAUTH_TOKEN}"
+  file: "output/ukraine-latest-fixed-crimea.osm.pbf"
+  skip_cleanup: true
+  on:
+    tags: true
+    rvm: 2.0.0
