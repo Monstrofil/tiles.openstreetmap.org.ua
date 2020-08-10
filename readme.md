@@ -31,7 +31,7 @@ If you want to setup this server on your own hardware, you can clone this reposi
 
 ### Quickstart
 1. Download latest .pbf dump of Ukraine from 
-   `https://github.com/Monstrofil/tiles.openstreetmap.org.ua/releases` (and untar it).
+   `https://github.com/Monstrofil/tiles.openstreetmap.org.ua/releases/latest` (and untar it).
 2. Place downloaded and extracted `ukraine-latest-fixed-crimea.osm.pbf` file into `data` folder.
 3. Run `./manage.sh import ukraine-latest-fixed-crimea.osm.pbf` in order to start postgis and import osm data into.
 4. Run `./manage.sh run` to start webserver (works on 8082 port by default). 
