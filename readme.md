@@ -25,8 +25,20 @@ Here is an example how to connect tiles to your leaflet map:
 Usage is free, but if you expect more than 1000 clients, please, 
 contact `shalal545@gmail.com` before using this tile server.
 
-## Background
-This project uses https://github.com/Monstrofil/osm_tileserver_docker to serve tiles.
+## Self-hosted server
+
+If you want to setup this server on your own hardware, you can clone this repository and follow quickstart.
+
+### Quickstart
+1. Download latest .pbf dump of Ukraine from 
+   `https://github.com/Monstrofil/tiles.openstreetmap.org.ua/releases` (and untar it).
+2. Place downloaded and extracted `ukraine-latest-fixed-crimea.osm.pbf` file into `data` folder.
+3. Run `./manage.sh import ukraine-latest-fixed-crimea.osm.pbf` in order to start postgis and import osm data into.
+4. Run `./manage.sh run` to start webserver (works on 8082 port by default). 
+   Generated tiles are available by `http://<ip>/osm/{z}/{x}/{y}.png`
+   
+This project uses https://github.com/Monstrofil/osm_tileserver_docker to
+serve tiles, so see that project for detailed instructions.
 
 # Credits
 - Andrii B for creating script that prepares pbf file
