@@ -21,6 +21,8 @@ services:
       <<: *x-postgres-env-config
       PGPASSWORD: ${POSTGRES_PASSWORD}
       OSM2PGSQL_THREADS: 8
+    depends_on:
+      - postgis
     entrypoint: /run.sh
     volumes:
       - renderd:/var/run/renderd
