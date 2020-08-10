@@ -35,7 +35,8 @@ If you want to setup this server on your own hardware, you can clone this reposi
 2. Place downloaded and extracted `ukraine-latest-fixed-crimea.osm.pbf` file into `data` folder.
 3. Run `./manage.sh import ukraine-latest-fixed-crimea.osm.pbf` in order to start postgis and import osm data into.
 4. Run `./manage.sh run` to start webserver (works on 8082 port by default). 
-   Generated tiles are available by `http://<ip>/osm/{z}/{x}/{y}.png`
+
+Generated tiles are available by `http://<ip>:8082/osm/{z}/{x}/{y}.png`
    
 This project uses https://github.com/Monstrofil/osm_tileserver_docker to
 serve tiles, so see that project for detailed instructions.

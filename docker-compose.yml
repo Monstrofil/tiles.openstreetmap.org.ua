@@ -8,7 +8,11 @@ x-postgres-env-config: &x-postgres-env-config
 services:
 
   website:
-
+    image: monstrofil/osm_ua_website
+    build:
+      context: website
+    ports:
+      - ${NGINX_EXPOSED_PORT:-1232}:80
 
   renderd:
     image: monstrofil/osm_renderd_carto_${CARTO_STYLE_TAG}
