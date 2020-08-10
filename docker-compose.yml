@@ -12,7 +12,7 @@ services:
     build:
       context: website
     ports:
-      - ${NGINX_EXPOSED_PORT:-1232}:80
+      - ${NGINX_EXPOSED_PORT:-8080}:80
 
   renderd:
     image: monstrofil/osm_renderd_carto_${CARTO_STYLE_TAG}
