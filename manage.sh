@@ -4,5 +4,5 @@
 if [ "$1" = "run" ]; then
   docker-compose up --remove-orphans -d apache
 else
-  docker-compose run --rm -T renderd python3 /manage.py $@
+  docker-compose run --rm -T renderd wait_for postgis:5432 -- /manage.py $@
 fi

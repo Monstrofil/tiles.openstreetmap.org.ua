@@ -25,7 +25,6 @@ services:
     volumes:
       - renderd:/var/run/renderd
       - ./data:/var/import:ro
-      - ./wait_for.sh:/bin/wait_for:ro
 
   apache:
     image: monstrofil/osm_apache_mod_tile
