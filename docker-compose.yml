@@ -8,12 +8,14 @@ x-postgres-env-config: &x-postgres-env-config
 services:
 
   website:
-    image: monstrofil/osm_ua_website
+    image: nginx:latest
     build:
       context: website
     ports:
       - ${NGINX_EXPOSED_PORT:-8080}:80
-
+    volumes:
+      - website/conf/nginx.conf:/etc/nginx/nginx.conf
+      - website/www/:/var/www/
   renderd:
     image: monstrofil/osm_renderd_carto_${CARTO_STYLE_TAG}
     restart: on-failure
