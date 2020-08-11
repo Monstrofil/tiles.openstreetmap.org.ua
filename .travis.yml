@@ -6,13 +6,13 @@ jobs:
       script:
       - docker-compose -f docker-compose-pbf.yml build
       - travis_wait 90 docker-compose -f docker-compose-pbf.yml run builder
-      - cd output && tar -czvf ukraine-latest.tar.gz ukraine-latest-fixed-crimea.osm.pbf
+      - cd output && tar -czvf ../ukraine-latest.tar.gz ukraine-latest-fixed-crimea.osm.pbf
 deploy:
   provider: releases
   tag_name: "auto-release-${TRAVIS_BUILD_NUMBER}"
   name: "auto-release-${TRAVIS_BUILD_NUMBER}"
   api_key: "${GITHUB_OAUTH_TOKEN}"
-  file: "output/ukraine-latest.tar.gz"
+  file: "ukraine-latest.tar.gz"
   skip_cleanup: true
   on:
     tags: true
