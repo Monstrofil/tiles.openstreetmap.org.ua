@@ -17,7 +17,9 @@ services:
       - ./website/conf/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./website/www/:/var/www/:ro
   renderd:
-    image: monstrofil/osm_renderd_carto_${CARTO_STYLE_TAG}
+    build:
+      context: renderd
+    image: monstrofil/osm_ua_renderd_carto_${CARTO_STYLE_TAG}
     restart: on-failure
     environment:
       <<: *x-postgres-env-config

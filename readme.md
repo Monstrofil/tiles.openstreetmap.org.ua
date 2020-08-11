@@ -27,15 +27,16 @@ contact `shalal545@gmail.com` before using this tile server.
 
 ## Self-hosted server
 
-If you want to setup this server on your own hardware, you can follow quickstart of https://github.com/Monstrofil/osm_tileserver_docke
+If you want to setup this server on your own hardware, you can follow quickstart of https://github.com/Monstrofil/osm_tileserver_docker
 using this repository as reference.
 
 ### Installation
-1. Clone repository.
+1. Clone repository to `/opt/tiles.openstreetmap.org.ua/`.
 2. Install nginx and copy configs from `configs` directory to `/etc/nginx`.
 3. Download latest `.pbf` dump of Ukraine from 
    `https://github.com/Monstrofil/tiles.openstreetmap.org.ua/releases/latest` (don't forget to untar it using `tar xvf <name>.tar.gz`).
 4. Place downloaded and extracted `ukraine-latest-fixed-crimea.osm.pbf` file into `data` folder of this project.
+5. Run `docker-compose pull && docker-compose build`
 5. Run `./manage.sh import ukraine-latest-fixed-crimea.osm.pbf` in order to start postgis and import osm data into.
 6. Run `./manage.sh run` to start webserver (works on 8082 port by default). 
 7. Run 
@@ -43,6 +44,11 @@ Generated tiles are available by `http://<ip>:8082/osm/{z}/{x}/{y}.png`
    
 This project uses https://github.com/Monstrofil/osm_tileserver_docker to
 serve tiles, so see that project for detailed instructions.
+
+### Update existing installation
+1. Run `git pull`
+2. Run `docker-compose pull && docker-compose build`
+3. Run `./manage.sh run`
 
 # Credits
 - Andrii B for creating script that prepares pbf file
