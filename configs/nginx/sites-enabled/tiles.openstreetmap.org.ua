@@ -26,11 +26,17 @@ server {
         include    nginxconfig.io/proxy.conf;
     }
 
+    # backward compatibility
+    location ~ ^/tile(/.*) {
+        proxy_pass http://127.0.0.1:8082/osm$1;
+        include    nginxconfig.io/proxy.conf;
+    }
+
     # additional config
     include nginxconfig.io/general.conf;
 }
 
-
+# HTTP redirect
 server {
     listen  80;
     listen  [::]:80;
