@@ -14,8 +14,8 @@ services:
     ports:
       - ${NGINX_EXPOSED_PORT:-8080}:80
     volumes:
-      - website/conf/nginx.conf:/etc/nginx/nginx.conf
-      - website/www/:/var/www/
+      - ./website/conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./website/www/:/var/www/:ro
   renderd:
     image: monstrofil/osm_renderd_carto_${CARTO_STYLE_TAG}
     restart: on-failure
